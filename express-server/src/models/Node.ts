@@ -1,12 +1,16 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
-const nodeSchema = new Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  author: String,
-  parentNode: String,
-  childNodes: Array<String>,
-  createdAt: { type: Date, default: Date.now },
-});
+const nodeSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    creator: String,
+    parentNode: Types.ObjectId,
+    childNodes: Array<Types.ObjectId>,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export const Node = model("nodes", nodeSchema);

@@ -5,6 +5,7 @@ import { cors } from "hono/cors";
 import connectDB from "./config/db";
 import { errorHandler, notFound } from "./middlewares/errorMiddlewares";
 import userRoute from "./routes/user.route";
+import nodeRoute from "./routes/node.route";
 
 export const app = new Hono().basePath("/api/v1");
 
@@ -26,6 +27,7 @@ app.use(
 // Home Route
 app.get("/", (c) => c.text("Welcome to the API v1!"));
 
+app.route("/node", nodeRoute);
 app.route("/user", userRoute);
 
 // Error Handler

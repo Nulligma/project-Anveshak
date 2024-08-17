@@ -8,7 +8,7 @@ import {
   getNode,
   updateNode,
   deleteNode,
-} from "../controllers/nodeController";
+} from "../controllers/node.controller";
 
 router.post("/", createNode);
 router.get("/:id", getNode);
