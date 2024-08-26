@@ -1,18 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { verifiedEnv } from "../lib/env";
 
 const connectDB = async () => {
   try {
-    if (Bun.env.MONGODB_URI !== undefined) {
-      const conn = await mongoose.connect(Bun.env.MONGODB_URI, {
-        autoIndex: true,
-      })
+    const conn = await mongoose.connect(verifiedEnv.MONGODB_URI, {
+      autoIndex: true,
+    });
 
-      console.log(`MongoDB Connected: ${conn.connection.host}`)
-    }
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+
+    const pg = drizzle(postgres(verifiedEnv.PG_URI));
+    return pg;
   } catch (err: any) {
-    console.error(`Error: ${err.message}`)
-    process.exit(1)
+    console.error(`Error: ${err.message}`);
+    process.exit(1);
   }
-}
+};
 
-export default connectDB
+export default connectDB;

@@ -1,6 +1,10 @@
+import connectDB from "./src/config/db";
 import { app } from "./src/honoApp";
+import { verifiedEnv } from "./src/lib/env";
 
-const port = Bun.env.PORT || 8000;
+export const pg = await connectDB();
+
+const port = verifiedEnv.PORT || 8000;
 
 export default {
   port,

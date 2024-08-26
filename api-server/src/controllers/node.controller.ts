@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { Node } from "../models/Node";
+import { Node } from "../models/node.model";
 import type { Context } from "hono";
 
 export const createNode = async (c: Context) => {
@@ -31,7 +31,7 @@ export const getNode = async (c: Context) => {
     const id = c.req.param("id");
     const post = await Node.findById(id);
     if (!post) {
-      c.status(404);
+      c.notFound();
     }
     c.status(200);
     return c.json({ post });
@@ -50,7 +50,7 @@ export const updateNode = async (c: Context) => {
       runValidators: true,
     });
     if (!post) {
-      c.status(404);
+      c.notFound();
     }
     c.status(200);
     return c.json({ post });
@@ -65,7 +65,7 @@ export const deleteNode = async (c: Context) => {
     const id = c.req.param("id");
     const post = await Node.findByIdAndDelete(id);
     if (!post) {
-      c.status(404);
+      c.notFound();
     }
     c.status(200);
     return c.json({ post });

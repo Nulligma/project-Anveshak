@@ -1,5 +1,5 @@
 import type { Context } from "hono";
-import User from "../models/User";
+import User from "../models/user.model";
 import genToken from "../lib/getToken";
 
 /**
