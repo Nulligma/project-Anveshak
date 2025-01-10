@@ -1,15 +1,5 @@
-# express-server
+# bun fullstack article website
 
-To install dependencies:
+Simple webiste to create aricles and share with friends
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.18. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Frontend and backend is created in bunjs instead of nodejs for improved performance.
